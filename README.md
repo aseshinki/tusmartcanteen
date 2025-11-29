@@ -12,7 +12,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ffc3e1 0%, #ffb3d9 100%);
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffa500 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -27,10 +27,20 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #ffc3e1 0%, #ffb3d9 100%);
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffa500 100%);
             color: #1e3a8a;
             padding: 30px;
             text-align: center;
+            position: relative;
+        }
+
+        .school-logo {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: auto;
         }
 
         .header h1 {
@@ -76,11 +86,11 @@
 
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #ffc3e1;
+            border-color: #ff6b9d;
         }
 
         .btn {
-            background: linear-gradient(135deg, #ffc3e1 0%, #ffb3d9 100%);
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffa500 100%);
             color: white;
             padding: 15px 30px;
             border: none;
@@ -94,7 +104,7 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 195, 225, 0.6);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.6);
         }
 
         .btn:active {
@@ -143,7 +153,7 @@
         .product-price {
             font-size: 1.5em;
             font-weight: bold;
-            color: #ff91d0;
+            color: #ff8c00;
         }
 
         #orderSummary {
@@ -163,7 +173,7 @@
         .summary-total {
             font-size: 1.3em;
             font-weight: bold;
-            color: #ff91d0;
+            color: #ff8c00;
             margin-top: 10px;
         }
 
@@ -186,7 +196,7 @@
 
         .spinner {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #ffc3e1;
+            border-top: 4px solid #ff6b9d;
             border-radius: 50%;
             width: 50px;
             height: 50px;
@@ -218,6 +228,7 @@
 <body>
     <div class="container">
         <div class="header">
+            <img src="prakao.png" alt="พระเกี้ยวโรงเรียนเตรียมอุดมศึกษา" class="school-logo">
             <h1>🍽️ Triamudom Smart Canteen</h1>
             <p>ระบบสั่งอาหารออนไลน์ โรงเรียนเตรียมอุดมศึกษา</p>
         </div>
@@ -225,17 +236,20 @@
         <div class="content">
             <!-- Page 1: Dashboard/Home -->
             <div id="page-home" class="page active">
-                <h2 style="margin-bottom: 20px;">ยินดีต้อนรับ! เริ่มต้นการสั่งอาหารของคุณ</h2>
+                <h2 style="margin-bottom: 20px;">🎉 ยินดีต้อนรับ! เริ่มต้นการสั่งอาหารของคุณ 🎉</h2>
+                <p style="margin-bottom: 20px; color: #666; text-align: center; font-size: 2em;">
+                    🍜 🍛 🍕 🍔 🍱 🥗 🍰 🧋
+                </p>
                 <p style="margin-bottom: 30px; color: #666;">
                     เลือกเมนูอาหารที่คุณต้องการและทำการชำระเงินผ่านระบบออนไลน์
                 </p>
                 
                 <div class="form-group">
-                    <label for="canteenLocation">เลือกโรงอาหาร</label>
+                    <label for="canteenLocation">📍 เลือกโรงอาหาร</label>
                     <select id="canteenLocation">
                         <option value="">-- เลือกโรงอาหาร --</option>
-                        <option value="โรงใหญ่">โรงใหญ่</option>
-                        <option value="โดมทอง">โดมทอง</option>
+                        <option value="โรงใหญ่">🏢 โรงใหญ่</option>
+                        <option value="โดมทอง">⭐ โดมทอง</option>
                     </select>
                 </div>
 
@@ -246,47 +260,47 @@
 
             <!-- Page 2: Add Product -->
             <div id="page-add-product" class="page">
-                <h2 style="margin-bottom: 20px;">📝 เพิ่มรายการอาหาร</h2>
+                <h2 style="margin-bottom: 20px;">📝 เพิ่มรายการอาหาร 🍴</h2>
                 
                 <div class="form-group">
-                    <label for="shopName">ชื่อร้านอาหาร</label>
+                    <label for="shopName">🏪 ชื่อร้านอาหาร</label>
                     <select id="shopName">
                         <option value="">-- เลือกร้านอาหาร --</option>
-                        <option value="ร้านข้าวมันไก่">ร้านข้าวมันไก่</option>
-                        <option value="ร้านก่วยเตี๋ยว">ร้านก่วยเตี๋ยว</option>
-                        <option value="ร้านอาหารตามสั่ง">ร้านอาหารตามสั่ง</option>
-                        <option value="ร้านเครื่องดื่ม">ร้านเครื่องดื่ม</option>
-                        <option value="ร้านข้าวราดแกง">ร้านข้าวราดแกง</option>
-                        <option value="ร้านอาหารญี่ปุ่น">ร้านอาหารญี่ปุ่น</option>
-                        <option value="ร้านสเต็ก">ร้านสเต็ก</option>
-                        <option value="ร้านขนมหวาน">ร้านขนมหวาน</option>
+                        <option value="ร้านข้าวมันไก่">🍗 ร้านข้าวมันไก่</option>
+                        <option value="ร้านก่วยเตี๋ยว">🍜 ร้านก่วยเตี๋ยว</option>
+                        <option value="ร้านอาหารตามสั่ง">🍳 ร้านอาหารตามสั่ง</option>
+                        <option value="ร้านเครื่องดื่ม">🧋 ร้านเครื่องดื่ม</option>
+                        <option value="ร้านข้าวราดแกง">🍛 ร้านข้าวราดแกง</option>
+                        <option value="ร้านอาหารญี่ปุ่น">🍱 ร้านอาหารญี่ปุ่น</option>
+                        <option value="ร้านสเต็ก">🥩 ร้านสเต็ก</option>
+                        <option value="ร้านขนมหวาน">🍰 ร้านขนมหวาน</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="productName">ชื่ออาหาร</label>
+                    <label for="productName">🍽️ ชื่ออาหาร</label>
                     <input type="text" id="productName" placeholder="ระบุชื่ออาหาร">
                 </div>
 
                 <div class="form-group">
-                    <label for="productCategory">ประเภทอาหาร</label>
+                    <label for="productCategory">🏷️ ประเภทอาหาร</label>
                     <select id="productCategory">
                         <option value="">-- เลือกประเภท --</option>
-                        <option value="ข้าวราด">ข้าวราด</option>
-                        <option value="ก่วยเตี๋ยว">ก่วยเตี๋ยว</option>
-                        <option value="อาหารตามสั่ง">อาหารตามสั่ง</option>
-                        <option value="เครื่องดื่ม">เครื่องดื่ม</option>
-                        <option value="ของหวาน">ของหวาน</option>
+                        <option value="ข้าวราด">🍛 ข้าวราด</option>
+                        <option value="ก่วยเตี๋ยว">🍜 ก่วยเตี๋ยว</option>
+                        <option value="อาหารตามสั่ง">🍳 อาหารตามสั่ง</option>
+                        <option value="เครื่องดื่ม">🧋 เครื่องดื่ม</option>
+                        <option value="ของหวาน">🍰 ของหวาน</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="productPrice">ราคา (บาท)</label>
+                    <label for="productPrice">💰 ราคา (บาท)</label>
                     <input type="number" id="productPrice" placeholder="0.00" step="0.01">
                 </div>
 
                 <div class="form-group">
-                    <label for="productDescription">รายละเอียด</label>
+                    <label for="productDescription">📋 รายละเอียด</label>
                     <textarea id="productDescription" rows="3" placeholder="รายละเอียดเพิ่มเติม"></textarea>
                 </div>
 
@@ -307,30 +321,30 @@
 
             <!-- Page 3: Payment Page -->
             <div id="page-payment" class="page">
-                <h2 style="margin-bottom: 20px;">💳 ชำระเงิน</h2>
+                <h2 style="margin-bottom: 20px;">💳 ชำระเงิน 💵</h2>
                 
                 <div class="form-group">
-                    <label for="customerName">ชื่อ-นามสกุล</label>
+                    <label for="customerName">👤 ชื่อ-นามสกุล</label>
                     <input type="text" id="customerName" placeholder="ระบุชื่อ-นามสกุล">
                 </div>
 
                 <div class="form-group">
-                    <label for="tableNumber">หมายเลขโต๊ะ</label>
+                    <label for="tableNumber">🪑 หมายเลขโต๊ะ</label>
                     <input type="text" id="tableNumber" placeholder="ระบุหมายเลขโต๊ะ">
                 </div>
 
                 <div class="form-group">
-                    <label for="paymentMethod">วิธีการชำระเงิน</label>
+                    <label for="paymentMethod">💰 วิธีการชำระเงิน</label>
                     <select id="paymentMethod">
                         <option value="">-- เลือกวิธีการชำระเงิน --</option>
-                        <option value="เงินสด">เงินสด</option>
-                        <option value="โอนเงิน">โอนเงิน</option>
-                        <option value="บัตรเครดิต">บัตรเครดิต</option>
+                        <option value="เงินสด">💵 เงินสด</option>
+                        <option value="โอนเงิน">📱 โอนเงิน</option>
+                        <option value="บัตรเครดิต">💳 บัตรเครดิต</option>
                     </select>
                 </div>
 
                 <div id="orderSummary">
-                    <h3 style="margin-bottom: 15px;">สรุปรายการสั่งซื้อ</h3>
+                    <h3 style="margin-bottom: 15px;">📝 สรุปรายการสั่งซื้อ</h3>
                     <div id="summaryItems"></div>
                     <div class="summary-item summary-total">
                         <span>ยอดรวมทั้งหมด</span>
@@ -355,27 +369,27 @@
 
             <!-- Page 4: Sales Report -->
             <div id="page-sales-report" class="page">
-                <h2 style="margin-bottom: 20px;">📊 รายงานยอดขาย</h2>
+                <h2 style="margin-bottom: 20px;">📊 รายงานยอดขาย 📈</h2>
                 
                 <div class="form-group">
-                    <label for="reportDate">วันที่ต้องการดูรายงาน</label>
+                    <label for="reportDate">📅 วันที่ต้องการดูรายงาน</label>
                     <input type="date" id="reportDate">
                 </div>
 
                 <div class="form-group">
-                    <label for="reportCategory">ประเภทอาหาร</label>
+                    <label for="reportCategory">🏷️ ประเภทอาหาร</label>
                     <select id="reportCategory">
-                        <option value="ทั้งหมด">ทั้งหมด</option>
-                        <option value="ข้าวราด">ข้าวราด</option>
-                        <option value="ก่วยเตี๋ยว">ก่วยเตี๋ยว</option>
-                        <option value="อาหารตามสั่ง">อาหารตามสั่ง</option>
-                        <option value="เครื่องดื่ม">เครื่องดื่ม</option>
-                        <option value="ของหวาน">ของหวาน</option>
+                        <option value="ทั้งหมด">📋 ทั้งหมด</option>
+                        <option value="ข้าวราด">🍛 ข้าวราด</option>
+                        <option value="ก่วยเตี๋ยว">🍜 ก่วยเตี๋ยว</option>
+                        <option value="อาหารตามสั่ง">🍳 อาหารตามสั่ง</option>
+                        <option value="เครื่องดื่ม">🧋 เครื่องดื่ม</option>
+                        <option value="ของหวาน">🍰 ของหวาน</option>
                     </select>
                 </div>
 
                 <div id="reportSummary" style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 20px; display: none;">
-                    <h3 style="margin-bottom: 15px;">สรุปยอดขาย</h3>
+                    <h3 style="margin-bottom: 15px;">📊 สรุปยอดขาย</h3>
                     <div class="summary-item">
                         <span>จำนวนรายการ</span>
                         <span id="reportCount">0</span>
@@ -405,12 +419,12 @@
             <div id="page-success" class="page">
                 <div class="success-message">
                     <div class="success-icon">✅</div>
-                    <h2 style="margin-bottom: 10px;">การชำระเงินสำเร็จ!</h2>
+                    <h2 style="margin-bottom: 10px;">🎉 การชำระเงินสำเร็จ! 🎊</h2>
                     <p style="color: #666; margin-bottom: 30px;">
-                        ขอบคุณที่ใช้บริการ Triamudom Smart Canteen<br>
-                        โปรดรอรับอาหารที่โต๊ะของคุณ
+                        ขอบคุณที่ใช้บริการ Triamudom Smart Canteen 🙏<br>
+                        โปรดรอรับอาหารที่โต๊ะของคุณ 🍴
                     </p>
-                    <button class="btn" onclick="resetOrder()">สั่งอาหารใหม่</button>
+                    <button class="btn" onclick="resetOrder()">🔄 สั่งอาหารใหม่</button>
                 </div>
             </div>
         </div>
