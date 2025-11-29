@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TU Smart Canteen</title>
+    <title>Triamudom Smart Canteen</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ffc3e1 0%, #ffb3d9 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -27,7 +27,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ffc3e1 0%, #ffb3d9 100%);
             color: white;
             padding: 30px;
             text-align: center;
@@ -76,11 +76,11 @@
 
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #ffc3e1;
         }
 
         .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ffc3e1 0%, #ffb3d9 100%);
             color: white;
             padding: 15px 30px;
             border: none;
@@ -94,7 +94,7 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 195, 225, 0.6);
         }
 
         .btn:active {
@@ -143,7 +143,7 @@
         .product-price {
             font-size: 1.5em;
             font-weight: bold;
-            color: #667eea;
+            color: #ff91d0;
         }
 
         #orderSummary {
@@ -163,7 +163,7 @@
         .summary-total {
             font-size: 1.3em;
             font-weight: bold;
-            color: #667eea;
+            color: #ff91d0;
             margin-top: 10px;
         }
 
@@ -186,7 +186,7 @@
 
         .spinner {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
+            border-top: 4px solid #ffc3e1;
             border-radius: 50%;
             width: 50px;
             height: 50px;
@@ -218,8 +218,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🍽️ TU Smart Canteen</h1>
-            <p>ระบบสั่งอาหารออนไลน์ มหาวิทยาลัยธรรมศาสตร์</p>
+            <h1>🍽️ Triamudom Smart Canteen</h1>
+            <p>ระบบสั่งอาหารออนไลน์ โรงเรียนเตรียมอุดมศึกษา</p>
         </div>
 
         <div class="content">
@@ -382,7 +382,7 @@
                     <div class="success-icon">✅</div>
                     <h2 style="margin-bottom: 10px;">การชำระเงินสำเร็จ!</h2>
                     <p style="color: #666; margin-bottom: 30px;">
-                        ขอบคุณที่ใช้บริการ TU Smart Canteen<br>
+                        ขอบคุณที่ใช้บริการ Triamudom Smart Canteen<br>
                         โปรดรอรับอาหารที่โต๊ะของคุณ
                     </p>
                     <button class="btn" onclick="resetOrder()">สั่งอาหารใหม่</button>
