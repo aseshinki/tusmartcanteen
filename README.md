@@ -228,7 +228,6 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://pic.in.th/images/jahFZt.png" alt="โลโก้โรงเรียนเตรียมอุดมศึกษา" class="school-logo">
             <h1>🍽️ Triamudom Smart Canteen</h1>
             <p>ระบบสั่งอาหารออนไลน์ โรงเรียนเตรียมอุดมศึกษา</p>
         </div>
@@ -283,20 +282,32 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="productCategory">🏷️ ประเภทอาหาร</label>
+                    <label for="productCategory">📍 กินที่ไหน</label>
                     <select id="productCategory">
-                        <option value="">-- เลือกประเภท --</option>
-                        <option value="ข้าวราด">🍛 ข้าวราด</option>
-                        <option value="ก่วยเตี๋ยว">🍜 ก่วยเตี๋ยว</option>
-                        <option value="อาหารตามสั่ง">🍳 อาหารตามสั่ง</option>
-                        <option value="เครื่องดื่ม">🧋 เครื่องดื่ม</option>
-                        <option value="ของหวาน">🍰 ของหวาน</option>
+                        <option value="">-- เลือกสถานที่ --</option>
+                        <option value="กินที่โรงอาหาร">🍽️ กินที่โรงอาหาร</option>
+                        <option value="ใส่กล่องกลับบ้าน">📦 ใส่กล่องกลับบ้าน</option>
+                        <option value="ถ้วยโฟม">🥤 ถ้วยโฟม</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="productPrice">💰 ราคา (บาท)</label>
-                    <input type="number" id="productPrice" placeholder="0.00" step="0.01">
+                    <label for="productPrice">💰 กินเท่าไหร่</label>
+                    <select id="productPrice">
+                        <option value="">-- เลือกราคา --</option>
+                        <option value="0">ธรรมดา</option>
+                        <option value="10">พิเศษ +10฿</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="productTopping">🍳 เพิ่ม Topping</label>
+                    <select id="productTopping">
+                        <option value="">-- ไม่เพิ่ม --</option>
+                        <option value="10">🍳 ไข่ดาว +10฿</option>
+                        <option value="10">🥚 ไข่เจียว +10฿</option>
+                        <option value="10">🥚 ไข่ต้ม +10฿</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -329,8 +340,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="tableNumber">🪑 หมายเลขโต๊ะ</label>
-                    <input type="text" id="tableNumber" placeholder="ระบุหมายเลขโต๊ะ">
+                    <label for="tableNumber">🏫 ห้อง</label>
+                    <input type="text" id="tableNumber" placeholder="ระบุห้อง เช่น ม.4/1">
                 </div>
 
                 <div class="form-group">
@@ -338,8 +349,8 @@
                     <select id="paymentMethod">
                         <option value="">-- เลือกวิธีการชำระเงิน --</option>
                         <option value="เงินสด">💵 เงินสด</option>
-                        <option value="โอนเงิน">📱 โอนเงิน</option>
-                        <option value="บัตรเครดิต">💳 บัตรเครดิต</option>
+                        <option value="โอนจ่าย">📱 โอนจ่าย</option>
+                        <option value="จ่ายผ่านระบบ Triamudom Smart Canteen">💳 จ่ายผ่านระบบ Triamudom Smart Canteen</option>
                     </select>
                 </div>
 
@@ -461,7 +472,8 @@
             const shopName = document.getElementById('shopName').value;
             const name = document.getElementById('productName').value.trim();
             const category = document.getElementById('productCategory').value;
-            const price = parseFloat(document.getElementById('productPrice').value);
+            const priceSelect = document.getElementById('productPrice').value;
+            const toppingSelect = document.getElementById('productTopping').value;
             const description = document.getElementById('productDescription').value.trim();
             const location = localStorage.getItem('selectedLocation') || '';
 
@@ -471,14 +483,21 @@
                 return;
             }
 
-            if (!name || !category || !price) {
+            if (!name || !category || !priceSelect) {
                 showError('errorMessage', 'กรุณากรอกข้อมูลให้ครบถ้วน');
                 return;
             }
 
-            if (price <= 0) {
-                showError('errorMessage', 'กรุณาระบุราคาที่ถูกต้อง');
-                return;
+            // คำนวณราคารวม
+            const basePrice = parseFloat(priceSelect);
+            const toppingPrice = toppingSelect ? parseFloat(toppingSelect) : 0;
+            const totalPrice = basePrice + toppingPrice;
+
+            // สร้างข้อความแสดงราคา
+            let priceText = basePrice === 0 ? 'ธรรมดา' : 'พิเศษ +10฿';
+            if (toppingPrice > 0) {
+                const toppingName = document.getElementById('productTopping').selectedOptions[0].text;
+                priceText += ' + ' + toppingName;
             }
 
             // แสดง loading
@@ -492,7 +511,8 @@
                 formData.append('shopName', shopName);
                 formData.append('name', name);
                 formData.append('category', category);
-                formData.append('price', price);
+                formData.append('price', totalPrice);
+                formData.append('priceDetail', priceText);
                 formData.append('description', description);
 
                 const response = await fetch(SCRIPT_URL, {
@@ -509,7 +529,8 @@
                         shopName: shopName,
                         name: name,
                         category: category,
-                        price: price,
+                        price: totalPrice,
+                        priceDetail: priceText,
                         description: description
                     });
 
@@ -521,6 +542,7 @@
                     document.getElementById('productName').value = '';
                     document.getElementById('productCategory').value = '';
                     document.getElementById('productPrice').value = '';
+                    document.getElementById('productTopping').value = '';
                     document.getElementById('productDescription').value = '';
                     
                     hideError('errorMessage');
