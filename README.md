@@ -28,7 +28,7 @@
 
         .header {
             background: linear-gradient(135deg, #ffc3e1 0%, #ffb3d9 100%);
-            color: white;
+            color: #1e3a8a;
             padding: 30px;
             text-align: center;
         }
@@ -229,6 +229,16 @@
                 <p style="margin-bottom: 30px; color: #666;">
                     เลือกเมนูอาหารที่คุณต้องการและทำการชำระเงินผ่านระบบออนไลน์
                 </p>
+                
+                <div class="form-group">
+                    <label for="canteenLocation">เลือกโรงอาหาร</label>
+                    <select id="canteenLocation">
+                        <option value="">-- เลือกโรงอาหาร --</option>
+                        <option value="โรงใหญ่">โรงใหญ่</option>
+                        <option value="โดมทอง">โดมทอง</option>
+                    </select>
+                </div>
+
                 <button class="btn" onclick="goToPage('add-product')">
                     🛒 เริ่มสั่งอาหาร
                 </button>
@@ -238,6 +248,21 @@
             <div id="page-add-product" class="page">
                 <h2 style="margin-bottom: 20px;">📝 เพิ่มรายการอาหาร</h2>
                 
+                <div class="form-group">
+                    <label for="shopName">ชื่อร้านอาหาร</label>
+                    <select id="shopName">
+                        <option value="">-- เลือกร้านอาหาร --</option>
+                        <option value="ร้านข้าวมันไก่">ร้านข้าวมันไก่</option>
+                        <option value="ร้านก่วยเตี๋ยว">ร้านก่วยเตี๋ยว</option>
+                        <option value="ร้านอาหารตามสั่ง">ร้านอาหารตามสั่ง</option>
+                        <option value="ร้านเครื่องดื่ม">ร้านเครื่องดื่ม</option>
+                        <option value="ร้านข้าวราดแกง">ร้านข้าวราดแกง</option>
+                        <option value="ร้านอาหารญี่ปุ่น">ร้านอาหารญี่ปุ่น</option>
+                        <option value="ร้านสเต็ก">ร้านสเต็ก</option>
+                        <option value="ร้านขนมหวาน">ร้านขนมหวาน</option>
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <label for="productName">ชื่ออาหาร</label>
                     <input type="text" id="productName" placeholder="ระบุชื่ออาหาร">
@@ -400,6 +425,17 @@
 
         // ฟังก์ชันเปลี่ยนหน้า
         function goToPage(pageName) {
+            // ตรวจสอบว่าเลือกโรงอาหารแล้วหรือยัง ก่อนไปหน้า add-product
+            if (pageName === 'add-product') {
+                const location = document.getElementById('canteenLocation').value;
+                if (!location) {
+                    alert('กรุณาเลือกโรงอาหารก่อน');
+                    return;
+                }
+                // เก็บข้อมูลโรงอาหารที่เลือก
+                localStorage.setItem('selectedLocation', location);
+            }
+            
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
@@ -408,12 +444,19 @@
 
         // ฟังก์ชันเพิ่มสินค้า
         async function addProduct() {
+            const shopName = document.getElementById('shopName').value;
             const name = document.getElementById('productName').value.trim();
             const category = document.getElementById('productCategory').value;
             const price = parseFloat(document.getElementById('productPrice').value);
             const description = document.getElementById('productDescription').value.trim();
+            const location = localStorage.getItem('selectedLocation') || '';
 
             // ตรวจสอบข้อมูล
+            if (!shopName) {
+                showError('errorMessage', 'กรุณาเลือกร้านอาหาร');
+                return;
+            }
+
             if (!name || !category || !price) {
                 showError('errorMessage', 'กรุณากรอกข้อมูลให้ครบถ้วน');
                 return;
@@ -431,6 +474,8 @@
                 // ส่งข้อมูลไป Google Sheets
                 const formData = new FormData();
                 formData.append('action', 'addProduct');
+                formData.append('location', location);
+                formData.append('shopName', shopName);
                 formData.append('name', name);
                 formData.append('category', category);
                 formData.append('price', price);
@@ -446,6 +491,8 @@
                 if (result.status === 'success') {
                     // เพิ่มลงในรายการสั่งซื้อปัจจุบัน
                     currentOrder.push({
+                        location: location,
+                        shopName: shopName,
                         name: name,
                         category: category,
                         price: price,
@@ -456,6 +503,7 @@
                     alert('เพิ่มรายการสำเร็จ! ✅');
                     
                     // ล้างฟอร์ม
+                    document.getElementById('shopName').value = '';
                     document.getElementById('productName').value = '';
                     document.getElementById('productCategory').value = '';
                     document.getElementById('productPrice').value = '';
@@ -570,7 +618,7 @@
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'summary-item';
                 itemDiv.innerHTML = `
-                    <span>${index + 1}. ${item.name}</span>
+                    <span>${index + 1}. ${item.shopName} - ${item.name}</span>
                     <span>${item.price.toFixed(2)} บาท</span>
                 `;
                 summaryDiv.appendChild(itemDiv);
@@ -582,9 +630,11 @@
         // ฟังก์ชันรีเซ็ตคำสั่งซื้อ
         function resetOrder() {
             currentOrder = [];
+            document.getElementById('canteenLocation').value = '';
             document.getElementById('customerName').value = '';
             document.getElementById('tableNumber').value = '';
             document.getElementById('paymentMethod').value = '';
+            localStorage.removeItem('selectedLocation');
             goToPage('home');
         }
 
