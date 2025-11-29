@@ -12,7 +12,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff6b9d 0%, #ffa500 100%);
+            background: linear-gradient(135deg, #ff69b4 0%, #ffffff 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -27,7 +27,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #ff6b9d 0%, #ffa500 100%);
+            background: linear-gradient(135deg, #ff69b4 0%, #ffffff 100%);
             color: #1e3a8a;
             padding: 30px;
             text-align: center;
@@ -39,8 +39,8 @@
             left: 20px;
             top: 50%;
             transform: translateY(-50%);
-            width: 60px;
-            height: auto;
+            height: 80px;
+            width: auto;
         }
 
         .header h1 {
@@ -86,11 +86,11 @@
 
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #ff6b9d;
+            border-color: #ff69b4;
         }
 
         .btn {
-            background: linear-gradient(135deg, #ff6b9d 0%, #ffa500 100%);
+            background: linear-gradient(135deg, #ff69b4 0%, #ffb6d9 100%);
             color: white;
             padding: 15px 30px;
             border: none;
@@ -104,7 +104,7 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.6);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.6);
         }
 
         .btn:active {
@@ -153,7 +153,7 @@
         .product-price {
             font-size: 1.5em;
             font-weight: bold;
-            color: #ff8c00;
+            color: #ff69b4;
         }
 
         #orderSummary {
@@ -173,7 +173,7 @@
         .summary-total {
             font-size: 1.3em;
             font-weight: bold;
-            color: #ff8c00;
+            color: #ff69b4;
             margin-top: 10px;
         }
 
@@ -196,7 +196,7 @@
 
         .spinner {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #ff6b9d;
+            border-top: 4px solid #ff69b4;
             border-radius: 50%;
             width: 50px;
             height: 50px;
@@ -228,7 +228,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="prakao.png" alt="พระเกี้ยวโรงเรียนเตรียมอุดมศึกษา" class="school-logo">
+            <img src="https://pic.in.th/images/jahFZt.png" alt="โลโก้โรงเรียนเตรียมอุดมศึกษา" class="school-logo">
             <h1>🍽️ Triamudom Smart Canteen</h1>
             <p>ระบบสั่งอาหารออนไลน์ โรงเรียนเตรียมอุดมศึกษา</p>
         </div>
